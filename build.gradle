@@ -1,0 +1,77 @@
+apply plugin: 'java'
+
+group = pluginGroup
+version = pluginVersion
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.github.jengelman.gradle.plugins:shadow:4.0.2"
+    }
+}
+
+compileJava{
+    options.compilerArgs += ["-parameters"]
+    options.fork = true
+    options.forkOptions.executable = 'javac'
+}
+
+apply plugin: "com.github.johnrengelman.shadow"
+
+shadowJar{
+    minimize()
+    relocate 'co.aikar.commands', 'lv.mtm123.cactusbucket.acf'
+    relocate 'lv.mtm123.spigotutils', 'lv.mtm123.cactusbucket.spigotutils'
+}
+
+build.dependsOn shadowJar
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'spigotmc-repo'
+        url = 'https://hub.spigotmc.org/nexus/content/groups/public/'
+    }
+    maven {
+        name = 'sonatype'
+        url = 'https://oss.sonatype.org/content/groups/public/'
+    }
+    maven {
+        url 'https://jitpack.io'
+    }
+    maven {
+        name = 'mtm123'
+        url = "http://repo.mtm123.lv"
+    }
+    maven {
+        name = 'aikar'
+        url = 'https://repo.aikar.co/content/groups/aikar/'
+    }
+    maven{
+        name = 'bstats'
+        url = 'http://repo.bstats.org/content/repositories/releases/'
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
+    compile "lv.mtm123:spigotutils:0.4.0-SNAPSHOT"
+    compile "co.aikar:acf-paper:0.5.0-SNAPSHOT"
+    implementation 'com.github.tr7zw:Item-NBT-API:01541253b5'
+}
+
+import org.apache.tools.ant.filters.ReplaceTokens
+
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        filter ReplaceTokens, tokens: [version: version]
+    }
+}

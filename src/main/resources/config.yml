@@ -1,0 +1,7 @@
+bucket-speed-in-ticks: 20
+bucket-item:
+  id: LAVA_BUCKET
+  name: "&2Cactus Bucket"
+  glow: true
+  lore:
+    - "&aClick to grow a cactus farm!"

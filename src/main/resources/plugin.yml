@@ -1,0 +1,6 @@
+name: CactusBucket
+version: @version@
+main: lv.mtm123.cactusbucket.CactusBucket
+authors: [MTM123]
+description: Cactus bucket
+website: https://mtm123.lv
