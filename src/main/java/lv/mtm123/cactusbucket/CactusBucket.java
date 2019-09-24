@@ -29,6 +29,10 @@ public final class CactusBucket extends JavaPlugin {
     private CactusBucket plugin;
     private ItemStack cactusBucketItem;
 
+    public static String getBucketId() {
+        return BUCKET_ID;
+    }
+
     @Override
     public void onEnable() {
         plugin = this;
@@ -57,12 +61,12 @@ public final class CactusBucket extends JavaPlugin {
 
         BuildHookManager buildHookManager = new BuildHookManager();
 
-/*        buildHookManager.addBuildHook(((player, block) -> {
+        buildHookManager.addBuildHook(((player, block) -> {
             BlockBreakEvent event = new BlockBreakEvent(block, player);
             Bukkit.getPluginManager().callEvent(event);
 
             return !event.isCancelled();
-        }));*/
+        }));
 
         buildHookManager.addBuildHook(((player, block) -> block.getType() == Material.AIR));
 
@@ -136,10 +140,6 @@ public final class CactusBucket extends JavaPlugin {
         nbtItem.setBoolean(BUCKET_ID, true);
 
         cactusBucketItem = nbtItem.getItem();
-    }
-
-    public static String getBucketId() {
-        return BUCKET_ID;
     }
 
 }

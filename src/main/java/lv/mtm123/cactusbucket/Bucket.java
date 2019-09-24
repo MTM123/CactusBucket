@@ -12,8 +12,8 @@ public class Bucket extends BukkitRunnable {
     private final BuildHookManager buildHookManager;
 
     private final Player player;
-    private Block startBlock;
     private final Material[] sequence = new Material[]{Material.TRIPWIRE, Material.SAND, Material.CACTUS, Material.AIR};
+    private Block startBlock;
     private int currentPosition;
 
     public Bucket(BuildHookManager buildHookManager, Player player, Block startBlock) {

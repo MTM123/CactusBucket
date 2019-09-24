@@ -48,7 +48,7 @@ public class PlayerListener implements Listener {
         BlockBreakEvent bevent = new BlockBreakEvent(relative, event.getPlayer());
         plugin.getServer().getPluginManager().callEvent(bevent);
 
-        if(bevent.isCancelled()){
+        if (bevent.isCancelled()) {
             return;
         }
 

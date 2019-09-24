@@ -46,7 +46,7 @@ public class CommandMain extends BaseCommand {
             target.getWorld().dropItem(target.getLocation(), i);
         }
 
-        //sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7[&6CactusBucket&7] &aItem added!"));
+        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7[&6CactusBucket&7] &aItem added!"));
     }
 
 }

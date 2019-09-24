@@ -14,11 +14,11 @@ public class BuildHookManager {
         this.buildHooks = new HashSet<>();
     }
 
-    public void addBuildHook(BuildCheck buildCheck){
+    public void addBuildHook(BuildCheck buildCheck) {
         buildHooks.add(buildCheck);
     }
 
-    public boolean canBuild(Player player, Block block){
+    public boolean canBuild(Player player, Block block) {
         return buildHooks.stream().allMatch(a -> a.canBuild(player, block));
     }
 
