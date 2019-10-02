@@ -16,20 +16,21 @@ public class CommandMain extends BaseCommand {
     @Dependency
     private CactusBucket plugin;
 
-    @Subcommand("g|give")
+    @Subcommand("give|g")
+    @CommandCompletion("@players @range:0-64")
     @CommandPermission("cactusbucket.commands.give")
     public void onGive(CommandSender sender, CPlayer target, @Flags("min=1,max=64") @Default("1") int amount) {
         giveCBItemToPlayer(sender, target.getPlayer(), amount);
     }
 
-    @Subcommand("r|reload")
+    @Subcommand("reload|r")
     @CommandPermission("cactusbucket.commands.reload")
     public void onReload(CommandSender sender) {
         plugin.reload();
         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7[&6CactusBucket&7] &aPlugin reloaded!"));
     }
 
-    @Subcommand("h|help")
+    @Subcommand("help|h")
     @HelpCommand
     @CommandPermission("cactusbucket.commands.help")
     public void onHelp(CommandHelp commandHelp) {
